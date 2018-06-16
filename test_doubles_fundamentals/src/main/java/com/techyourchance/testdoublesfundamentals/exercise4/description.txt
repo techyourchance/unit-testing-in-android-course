@@ -1,0 +1,12 @@
+Description:
+Your goal is to find all bugs in FetchUserProfileUseCaseSync class without looking at its internal
+implementation.
+The test class FetchUserProfileUseCaseSyncTest already exists.
+You should:
+1) Open the test class and set up system under test (SUT).
+2) Implement the required test doubles.
+3) Think about the required test cases and list them as comments.
+4) Write actual tests and identify which requirements aren't satisfied.
+5) Read tests output and try to come up with a hypothesis about the production code.
+6) Fix the production code.
+7) Make sure that all tests pass.

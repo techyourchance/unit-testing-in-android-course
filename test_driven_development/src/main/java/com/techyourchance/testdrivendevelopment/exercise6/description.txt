@@ -1,0 +1,19 @@
+Description:
+Your goal is to implement FetchUserUseCaseSync interface using TDD.
+
+The requirements:
+1) If the user with given user ID is not in the cache then it should be fetched from the server.
+2) If the user fetched from the server then it should be stored in the cache before returning to the caller.
+3) If the user is in the cache then cached record should be returned without polling the server.
+
+You should:
+1) Create a new implementation of the interface WITHOUT writing any actual functionality.
+2) Create a new test class for your implementation.
+3) Write all the required tests.
+4) Run the tests and ensure that all of them fail.
+5) Write the required production code.
+6) Run the tests and ensure that all of them pass. Debug if necessary.
+7) Refactor the production code for readability and maintainability.
+8) Refactor the test code for readability and maintainability.
+9) Assign your implementation to SUT in the class FetchUserUseCaseSyncTestRef.
+10) Ensure that all reference tests pass. Debug if necessary.
