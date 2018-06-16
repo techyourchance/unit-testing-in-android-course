@@ -1,0 +1,11 @@
+Description:
+Your goal is to find all bugs in StringDuplicator class without looking at its internal
+implementation.
+The test class StringDuplicatorTest already exists.
+Assume all arguments and return values are non-nullable unless annotated with @Nullable annotation.
+You should:
+1) Open the test class and set up system under test (SUT).
+2) Cover the functionality of SUT with tests and identify which requirements aren't satisfied.
+3) Read tests output and try to come up with a hypothesis about the production code.
+4) Fix the production code.
+5) Make sure that all tests pass.
