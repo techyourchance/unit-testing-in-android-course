@@ -1,0 +1,12 @@
+In this exercise you're going to write your first unit tests!
+
+Description:
+Your goal is to find all bugs in NegativeNumberValidator class without looking at its internal
+implementation.
+The test class NegativeNumberValidatorTest already exists.
+You should:
+1) Open the test class and set up system under test (SUT).
+2) Cover the functionality of SUT with tests and identify which requirements aren't satisfied.
+3) Read tests output and try to come up with a hypothesis about the production code.
+4) Fix the production code.
+5) Make sure that all tests pass.
