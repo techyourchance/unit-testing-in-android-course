@@ -1,0 +1,26 @@
+Description:
+Your goal is to implement FetchContactsUseCase class using Uncle Bob's TDD technique. This class
+must be Observable and notify it's observers (listeners) about completion of an async flow
+through method calls.
+
+The three rules of TDD are:
+1) You are not allowed to write any production code unless it is to make a failing unit test pass
+2) You are not allowed to write any more of a unit test than is sufficient to fail; and compilation failures are failures
+3) You are not allowed to write any more production code than is sufficient to pass the one failing unit test
+
+The requirements:
+1) If the server request completes successfully, then registered listeners should be notified with correct data.
+2) If the server request fails for any reason except network error, then registered listeners should be notified about a failure.
+3) If the server request fails due to network error, then registered listeners should be notified about a network error specifically.
+
+You should:
+1) Create a new class FetchContactsUseCase WITHOUT writing any actual functionality.
+2) Create a new test class.
+3) Test drive the implementation of FetchContactsUseCase according to Uncle Bob's three rules of TDD.
+   Always run all the tests to make sure that further changes don't break the existing functionality.
+4) Refactor the production code.
+5) Run the tests to make sure that all of them pass after the refactoring.
+6) Refactor the tests code.
+7) Run the tests to make sure that all of them pass after the refactoring.
+
+
