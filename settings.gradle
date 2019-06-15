@@ -1,1 +1,6 @@
-include ':unit_testing_fundamentals', ':test_doubles_fundamentals', ':mockito_fundamentals', ':test_driven_development', ':unit_testing_in_android'
+include ':unit_testing_fundamentals'
+include ':test_doubles_fundamentals'
+include ':mockito_fundamentals'
+include ':test_driven_development'
+include ':unit_testing_in_android'
+include ':tutorial_android_application'
