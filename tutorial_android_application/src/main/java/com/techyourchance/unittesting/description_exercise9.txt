@@ -1,0 +1,14 @@
+Description:
+Your goal is to unit test existing class FetchQuestionDetailsUseCase.
+
+You should:
+1) Create a new test class.
+2) Think about the required test cases without reviewing SUT's internal implementation.
+3) Implement test cases.
+4) Run tests and make sure that all of them pass.
+5) Refactor the tests code.
+6) Run the tests to make sure that all of them pass after the refactoring.
+7) Perform mutation testing to make sure that SUT's functionality is actually covered by tests.
+
+
+
