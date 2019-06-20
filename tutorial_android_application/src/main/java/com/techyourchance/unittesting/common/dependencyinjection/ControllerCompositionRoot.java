@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 
+import com.techyourchance.unittesting.common.time.TimeProvider;
 import com.techyourchance.unittesting.networking.StackoverflowApi;
 import com.techyourchance.unittesting.networking.questions.FetchLastActiveQuestionsEndpoint;
 import com.techyourchance.unittesting.questions.FetchLastActiveQuestionsUseCase;
@@ -73,12 +74,16 @@ public class ControllerCompositionRoot {
         return new FetchLastActiveQuestionsUseCase(getFetchLastActiveQuestionsEndpoint());
     }
 
+    public TimeProvider getTimeProvider() {
+        return new TimeProvider();
+    }
+
     public QuestionsListController getQuestionsListController() {
         return new QuestionsListController(
                 getFetchLastActiveQuestionsUseCase(),
                 getScreensNavigator(),
-                getToastsHelper()
-        );
+                getToastsHelper(),
+                getTimeProvider());
     }
 
     public ToastsHelper getToastsHelper() {
