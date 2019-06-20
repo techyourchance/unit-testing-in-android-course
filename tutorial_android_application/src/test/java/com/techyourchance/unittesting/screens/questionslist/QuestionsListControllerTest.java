@@ -1,5 +1,6 @@
 package com.techyourchance.unittesting.screens.questionslist;
 
+import com.techyourchance.unittesting.common.time.TimeProvider;
 import com.techyourchance.unittesting.questions.FetchLastActiveQuestionsUseCase;
 import com.techyourchance.unittesting.questions.Question;
 import com.techyourchance.unittesting.screens.common.screensnavigator.ScreensNavigator;
@@ -21,6 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class QuestionsListControllerTest {
@@ -35,6 +37,7 @@ public class QuestionsListControllerTest {
     @Mock ScreensNavigator mScreensNavigator;
     @Mock ToastsHelper mToastsHelper;
     @Mock QuestionsListViewMvc mQuestionsListViewMvc;
+    @Mock TimeProvider mTimeProviderMock;
     // endregion helper fields ---------------------------------------------------------------------
 
     QuestionsListController SUT;
@@ -42,7 +45,7 @@ public class QuestionsListControllerTest {
     @Before
     public void setup() throws Exception {
         mUseCaseTd = new UseCaseTd();
-        SUT = new QuestionsListController(mUseCaseTd, mScreensNavigator, mToastsHelper);
+        SUT = new QuestionsListController(mUseCaseTd, mScreensNavigator, mToastsHelper, mTimeProviderMock);
         SUT.bindView(mQuestionsListViewMvc);
     }
 
@@ -146,6 +149,34 @@ public class QuestionsListControllerTest {
         verify(mScreensNavigator).toQuestionDetails(QUESTION.getId());
     }
 
+    @Test
+    public void onStart_secondTimeAfterCachingTimeout_questionsBoundToViewFromUseCase() throws Exception {
+        // Arrange
+        emptyQuestionsListOnFirstCall();
+        when(mTimeProviderMock.getCurrentTimestamp()).thenReturn(0l);
+        // Act
+        SUT.onStart();
+        SUT.onStop();
+        when(mTimeProviderMock.getCurrentTimestamp()).thenReturn(10000l);
+        SUT.onStart();
+        // Assert
+        verify(mQuestionsListViewMvc).bindQuestions(QUESTIONS);
+    }
+
+    @Test
+    public void onStart_secondTimeRightBeforeCachingTimeout_questionsBoundToViewFromCache() throws Exception {
+        // Arrange
+        when(mTimeProviderMock.getCurrentTimestamp()).thenReturn(0l);
+        // Act
+        SUT.onStart();
+        SUT.onStop();
+        when(mTimeProviderMock.getCurrentTimestamp()).thenReturn(9999l);
+        SUT.onStart();
+        // Assert
+        verify(mQuestionsListViewMvc, times(2)).bindQuestions(QUESTIONS);
+        assertThat(mUseCaseTd.getCallCount(), is(1));
+    }
+
 
     // region helper methods -----------------------------------------------------------------------
 
@@ -157,17 +188,16 @@ public class QuestionsListControllerTest {
         mUseCaseTd.mFailure = true;
     }
 
-    private List<Question> getExpectedQuestions() {
-        List<Question> questions = new LinkedList<>();
-        questions.add(new Question("id1", "title1"));
-        questions.add(new Question("id2", "title2"));
-        return questions;
+    private void emptyQuestionsListOnFirstCall() {
+        mUseCaseTd.mEmptyListOnFirstCall = true;
     }
+
     // endregion helper methods --------------------------------------------------------------------
 
     // region helper classes -----------------------------------------------------------------------
     private static class UseCaseTd extends FetchLastActiveQuestionsUseCase {
 
+        public boolean mEmptyListOnFirstCall;
         private boolean mFailure;
         private int mCallCount;
 
@@ -182,7 +212,11 @@ public class QuestionsListControllerTest {
                 if (mFailure) {
                     listener.onLastActiveQuestionsFetchFailed();
                 } else {
-                    listener.onLastActiveQuestionsFetched(QUESTIONS);
+                    if (mEmptyListOnFirstCall && mCallCount == 1) {
+                        listener.onLastActiveQuestionsFetched(new LinkedList<Question>());
+                    } else {
+                        listener.onLastActiveQuestionsFetched(QUESTIONS);
+                    }
                 }
             }
         }
