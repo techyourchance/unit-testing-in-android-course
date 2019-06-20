@@ -17,6 +17,7 @@ import com.techyourchance.unittesting.screens.common.fragmentframehelper.Fragmen
 import com.techyourchance.unittesting.screens.common.navdrawer.NavDrawerHelper;
 import com.techyourchance.unittesting.screens.common.screensnavigator.ScreensNavigator;
 import com.techyourchance.unittesting.screens.common.toastshelper.ToastsHelper;
+import com.techyourchance.unittesting.screens.questiondetails.QuestionDetailsController;
 import com.techyourchance.unittesting.screens.questionslist.QuestionsListController;
 
 public class ControllerCompositionRoot {
@@ -99,5 +100,9 @@ public class ControllerCompositionRoot {
 
     public BackPressDispatcher getBackPressDispatcher() {
         return (BackPressDispatcher) getActivity();
+    }
+
+    public QuestionDetailsController getQuestionDetailsController() {
+        return new QuestionDetailsController(getFetchQuestionDetailsUseCase(), getScreensNavigator(), getToastsHelper());
     }
 }

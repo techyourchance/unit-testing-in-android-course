@@ -28,11 +28,18 @@ public class QuestionDetailsFragment extends BaseFragment implements
     }
 
     private FetchQuestionDetailsUseCase mFetchQuestionDetailsUseCase;
-
     private ToastsHelper mToastsHelper;
     private ScreensNavigator mScreensNavigator;
 
     private QuestionDetailsViewMvc mViewMvc;
+
+    private QuestionDetailsController mQuestionDetailsController;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mQuestionDetailsController = getCompositionRoot().getQuestionDetailsController();
+    }
 
     @Nullable
     @Override
@@ -42,6 +49,9 @@ public class QuestionDetailsFragment extends BaseFragment implements
         mToastsHelper = getCompositionRoot().getToastsHelper();
         mScreensNavigator = getCompositionRoot().getScreensNavigator();
         mViewMvc = getCompositionRoot().getViewMvcFactory().getQuestionDetailsViewMvc(container);
+
+        mQuestionDetailsController.bindView(mViewMvc);
+        mQuestionDetailsController.bindQuestionId(getArguments().getString(ARG_QUESTION_ID));
 
         return mViewMvc.getRootView();
     }
