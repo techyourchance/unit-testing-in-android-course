@@ -1,0 +1,26 @@
+Description:
+Your goal is to extract application layer logic from QuestionDetailsFragment into standalone
+controller using Uncle Bob's TDD technique.
+I already created empty QuestionDetailsController class for you and set it up in
+QuestionDetailsFragment.
+
+The three rules of TDD are:
+1) You are not allowed to write any production code unless it is to make a failing unit test pass
+2) You are not allowed to write any more of a unit test than is sufficient to fail; and compilation failures are failures
+3) You are not allowed to write any more production code than is sufficient to pass the one failing unit test
+
+You should:
+1) Create a new test class.
+2) Think about the required test cases. In this case, it's totally alright to base test
+   cases on QuestionDetailsFragment's implementation.
+3) Test drive the implementation of QuestionDetailsController according to Uncle Bob's three rules of TDD.
+   Always run all the tests to make sure that further changes don't break the existing functionality.
+4) Refactor the production code.
+5) Run the tests to make sure that all of them pass after the refactoring.
+6) Refactor the tests code.
+7) Run the tests to make sure that all of them pass after the refactoring.
+8) Remove the implemented functionality from QuestionDetailsFragment.
+9) Install the app and perform exploratory manual testing.
+
+* Note that you don't need to ensure line coverage and perform mutation testing because
+  you're using Uncle Bob's technique.
