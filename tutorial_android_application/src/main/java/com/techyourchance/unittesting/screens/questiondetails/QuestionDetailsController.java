@@ -1,10 +1,11 @@
 package com.techyourchance.unittesting.screens.questiondetails;
 
 import com.techyourchance.unittesting.questions.FetchQuestionDetailsUseCase;
+import com.techyourchance.unittesting.questions.QuestionDetails;
 import com.techyourchance.unittesting.screens.common.screensnavigator.ScreensNavigator;
 import com.techyourchance.unittesting.screens.common.toastshelper.ToastsHelper;
 
-public class QuestionDetailsController {
+public class QuestionDetailsController implements QuestionDetailsViewMvc.Listener, FetchQuestionDetailsUseCase.Listener {
 
     private final FetchQuestionDetailsUseCase mFetchQuestionDetailsUseCase;
     private final ScreensNavigator mScreensNavigator;
@@ -28,4 +29,35 @@ public class QuestionDetailsController {
     public void bindView(QuestionDetailsViewMvc viewMvc) {
         mViewMvc = viewMvc;
     }
+
+    public void onStart() {
+        mViewMvc.registerListener(this);
+        mFetchQuestionDetailsUseCase.registerListener(this);
+
+        mViewMvc.showProgressIndication();
+        mFetchQuestionDetailsUseCase.fetchQuestionDetailsAndNotify(mQuestionId);
+    }
+
+    public void onStop() {
+        mViewMvc.unregisterListener(this);
+        mFetchQuestionDetailsUseCase.unregisterListener(this);
+    }
+
+    @Override
+    public void onQuestionDetailsFetched(QuestionDetails questionDetails) {
+        mViewMvc.bindQuestion(questionDetails);
+        mViewMvc.hideProgressIndication();
+    }
+
+    @Override
+    public void onQuestionDetailsFetchFailed() {
+        mViewMvc.hideProgressIndication();
+        mToastsHelper.showUseCaseError();
+    }
+
+    @Override
+    public void onNavigateUpClicked() {
+        mScreensNavigator.navigateUp();
+    }
+
 }
