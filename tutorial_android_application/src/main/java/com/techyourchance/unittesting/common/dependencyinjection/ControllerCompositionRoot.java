@@ -51,10 +51,6 @@ public class ControllerCompositionRoot {
         return new FetchLastActiveQuestionsEndpoint(getStackoverflowApi());
     }
 
-    private FetchQuestionDetailsEndpoint getFetchQuestionDetailsEndpoint() {
-        return new FetchQuestionDetailsEndpoint(getStackoverflowApi());
-    }
-
     private LayoutInflater getLayoutInflater() {
         return LayoutInflater.from(getContext());
     }
@@ -68,7 +64,7 @@ public class ControllerCompositionRoot {
     }
 
     public FetchQuestionDetailsUseCase getFetchQuestionDetailsUseCase() {
-        return new FetchQuestionDetailsUseCase(getFetchQuestionDetailsEndpoint());
+        return mCompositionRoot.getFetchQuestionDetailsUseCase();
     }
 
     public FetchLastActiveQuestionsUseCase getFetchLastActiveQuestionsUseCase() {
@@ -76,7 +72,7 @@ public class ControllerCompositionRoot {
     }
 
     public TimeProvider getTimeProvider() {
-        return new TimeProvider();
+        return mCompositionRoot.getTimeProvider();
     }
 
     public QuestionsListController getQuestionsListController() {
