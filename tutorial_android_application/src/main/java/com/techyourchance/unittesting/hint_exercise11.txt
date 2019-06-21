@@ -1,0 +1,6 @@
+Since FetchQuestionDetailsUseCase is a "global" object, meaning that the same instance will be
+reused, it's reasonable to assume that over the lifetime of the application it will need to
+fetch information for different questions.
+To implement the caching functionality properly, you need to make sure that this use case can cache
+multiple questions in parallel, and that each cached question has its own timeout.
+Map data structure that stores question IDs as keys and some data as value can come in very handy.

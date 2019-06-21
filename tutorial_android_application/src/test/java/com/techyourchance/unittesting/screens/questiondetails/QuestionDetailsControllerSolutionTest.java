@@ -1,6 +1,5 @@
 package com.techyourchance.unittesting.screens.questiondetails;
 
-import com.techyourchance.unittesting.networking.questions.FetchQuestionDetailsEndpoint;
 import com.techyourchance.unittesting.questions.FetchQuestionDetailsUseCase;
 import com.techyourchance.unittesting.questions.QuestionDetails;
 import com.techyourchance.unittesting.screens.common.screensnavigator.ScreensNavigator;
@@ -10,29 +9,15 @@ import com.techyourchance.unittesting.testdata.QuestionDetailsTestData;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.Mock;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class QuestionDetailsControllerSolutionTest {
@@ -157,7 +142,7 @@ public class QuestionDetailsControllerSolutionTest {
         private boolean mFailure;
 
         public UseCaseTd() {
-            super(null);
+            super(null, null);
         }
 
         @Override
