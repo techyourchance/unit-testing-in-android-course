@@ -1,0 +1,26 @@
+Description:
+Your goal is to add in-memory caching functionality with timeout to FetchQuestionDetailsUseCase
+using Uncle Bob's TDD technique. Set the timeout to 60 seconds.
+FetchQuestionDetailsUseCase is a "global" object, meaning that the same instance will be reused
+each time the user enters QuestionDetails screen.
+To make your life easier, I already injected TimeProvider into FetchQuestionDetailsUseCase's
+constructor. Therefore, you don't need to change any production code outside of this class in this
+exercise.
+
+The three rules of TDD are:
+1) You are not allowed to write any production code unless it is to make a failing unit test pass
+2) You are not allowed to write any more of a unit test than is sufficient to fail; and compilation failures are failures
+3) You are not allowed to write any more production code than is sufficient to pass the one failing unit test
+
+You should:
+1) Think about all the required test cases for this functionality.
+2) Test drive the implementation of the feature according to Uncle Bob's three rules of TDD.
+   Always run all the tests to make sure that further changes don't break the existing functionality.
+3) Refactor the production code.
+4) Run the tests to make sure that all of them pass after the refactoring.
+5) Refactor the tests code.
+6) Run the tests to make sure that all of them pass after the refactoring.
+7) Install the app and perform exploratory manual testing.
+8) After you complete all the above steps, and before you review my solution, please read
+   hint_exercise11.txt file. It contains a hint about specific test cases required for this
+   functionality. If you already implemented them - great! If not, add them at this point.

@@ -1,6 +1,7 @@
 package com.techyourchance.unittesting.questions;
 
 import com.techyourchance.unittesting.common.BaseObservable;
+import com.techyourchance.unittesting.common.time.TimeProvider;
 import com.techyourchance.unittesting.networking.questions.FetchQuestionDetailsEndpoint;
 import com.techyourchance.unittesting.networking.questions.QuestionSchema;
 
@@ -12,9 +13,12 @@ public class FetchQuestionDetailsUseCase extends BaseObservable<FetchQuestionDet
     }
 
     private final FetchQuestionDetailsEndpoint mFetchQuestionDetailsEndpoint;
+    private final TimeProvider mTimeProvider;
 
-    public FetchQuestionDetailsUseCase(FetchQuestionDetailsEndpoint fetchQuestionDetailsEndpoint) {
+    public FetchQuestionDetailsUseCase(FetchQuestionDetailsEndpoint fetchQuestionDetailsEndpoint,
+                                       TimeProvider timeProvider) {
         mFetchQuestionDetailsEndpoint = fetchQuestionDetailsEndpoint;
+        mTimeProvider = timeProvider;
     }
 
     public void fetchQuestionDetailsAndNotify(String questionId) {
