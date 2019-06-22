@@ -23,7 +23,7 @@ import static org.mockito.Mockito.verify;
 public class QuestionDetailsControllerSolutionTest {
 
     // region constants ----------------------------------------------------------------------------
-    private static final QuestionDetails QUESTION_DETAILS = QuestionDetailsTestData.getQuestionDetails();
+    private static final QuestionDetails QUESTION_DETAILS = QuestionDetailsTestData.getQuestionDetails1();
     private static final String QUESTION_ID = QUESTION_DETAILS.getId();
     // endregion constants -------------------------------------------------------------------------
 
