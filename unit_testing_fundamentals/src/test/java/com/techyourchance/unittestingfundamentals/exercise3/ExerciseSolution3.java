@@ -26,14 +26,6 @@ public class ExerciseSolution3 {
     }
 
     @Test
-    public void isAdjacent_interval1BeforeAndAdjacentToInterval2_trueReturned() throws Exception {
-        Interval interval1 = new Interval(-1, 5);
-        Interval interval2 = new Interval(5, 12);
-        boolean result = SUT.isAdjacent(interval1, interval2);
-        assertThat(result, is(true));
-    }
-
-    @Test
     public void isAdjacent_interval1OverlapsInterval2OnStart_falseReturned() throws Exception {
         Interval interval1 = new Interval(-1, 5);
         Interval interval2 = new Interval(3, 12);
@@ -74,19 +66,27 @@ public class ExerciseSolution3 {
     }
 
     @Test
-    public void isAdjacent_interval1AfterAndAdjacentToInterval2_trueReturned() throws Exception {
-        Interval interval1 = new Interval(12, 15);
+    public void isAdjacent_interval1AfterInterval2_falseReturned() throws Exception {
+        Interval interval1 = new Interval(-1, 5);
+        Interval interval2 = new Interval(-10, -3);
+        boolean result = SUT.isAdjacent(interval1, interval2);
+        assertThat(result, is(false));
+    }
+
+    @Test
+    public void isAdjacent_interval1BeforeAndAdjacentToInterval2_trueReturned() throws Exception {
+        Interval interval1 = new Interval(-1, 5);
         Interval interval2 = new Interval(5, 12);
         boolean result = SUT.isAdjacent(interval1, interval2);
         assertThat(result, is(true));
     }
 
     @Test
-    public void isAdjacent_interval1AfterInterval2_falseReturned() throws Exception {
-        Interval interval1 = new Interval(-1, 5);
-        Interval interval2 = new Interval(-10, -3);
+    public void isAdjacent_interval1AfterAndAdjacentToInterval2_trueReturned() throws Exception {
+        Interval interval1 = new Interval(12, 15);
+        Interval interval2 = new Interval(5, 12);
         boolean result = SUT.isAdjacent(interval1, interval2);
-        assertThat(result, is(false));
+        assertThat(result, is(true));
     }
 
 }
