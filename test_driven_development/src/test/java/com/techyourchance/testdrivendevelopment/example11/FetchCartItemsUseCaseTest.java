@@ -16,17 +16,12 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -56,12 +51,6 @@ public class FetchCartItemsUseCaseTest {
     public void setup() throws Exception {
         SUT = new FetchCartItemsUseCase(mGetCartItemsHttpEndpointMock);
         success();
-    }
-
-    private List<CartItemSchema> getCartItemSchemes() {
-        List<CartItemSchema> schemas = new ArrayList<>();
-        schemas.add(new CartItemSchema(ID, TITLE, DESCRIPTION, PRICE));
-        return schemas;
     }
 
     @Test
@@ -137,6 +126,12 @@ public class FetchCartItemsUseCaseTest {
         List<CartItem> cartItems = new ArrayList<>();
         cartItems.add(new CartItem(ID, TITLE, DESCRIPTION, PRICE));
         return cartItems;
+    }
+
+    private List<CartItemSchema> getCartItemSchemes() {
+        List<CartItemSchema> schemas = new ArrayList<>();
+        schemas.add(new CartItemSchema(ID, TITLE, DESCRIPTION, PRICE));
+        return schemas;
     }
 
     private void success() {
