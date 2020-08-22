@@ -19,6 +19,7 @@ public class LoginUseCaseSyncTest {
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
     public static final String AUTH_TOKEN = "authToken";
+    public static final String NON_INITIALIZED_AUTH_TOKEN = "noAuthToken";
 
     LoginHttpEndpointSyncTd mLoginHttpEndpointSyncTd;
     AuthTokenCacheTd mAuthTokenCacheTd;
@@ -51,21 +52,21 @@ public class LoginUseCaseSyncTest {
     public void loginSync_generalError_authTokenNotCached() throws Exception {
         mLoginHttpEndpointSyncTd.mIsGeneralError = true;
         SUT.loginSync(USERNAME, PASSWORD);
-        assertThat(mAuthTokenCacheTd.getAuthToken(), is(""));
+        assertThat(mAuthTokenCacheTd.getAuthToken(), is(NON_INITIALIZED_AUTH_TOKEN));
     }
 
     @Test
     public void loginSync_authError_authTokenNotCached() throws Exception {
         mLoginHttpEndpointSyncTd.mIsAuthError = true;
         SUT.loginSync(USERNAME, PASSWORD);
-        assertThat(mAuthTokenCacheTd.getAuthToken(), is(""));
+        assertThat(mAuthTokenCacheTd.getAuthToken(), is(NON_INITIALIZED_AUTH_TOKEN));
     }
 
     @Test
     public void loginSync_serverError_authTokenNotCached() throws Exception {
         mLoginHttpEndpointSyncTd.mIsServerError = true;
         SUT.loginSync(USERNAME, PASSWORD);
-        assertThat(mAuthTokenCacheTd.getAuthToken(), is(""));
+        assertThat(mAuthTokenCacheTd.getAuthToken(), is(NON_INITIALIZED_AUTH_TOKEN));
     }
 
     @Test
@@ -160,7 +161,7 @@ public class LoginUseCaseSyncTest {
 
     private static class AuthTokenCacheTd implements AuthTokenCache {
 
-        String mAuthToken = "";
+        String mAuthToken = NON_INITIALIZED_AUTH_TOKEN;
 
         @Override
         public void cacheAuthToken(String authToken) {
