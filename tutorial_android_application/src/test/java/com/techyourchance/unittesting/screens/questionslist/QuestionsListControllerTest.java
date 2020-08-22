@@ -133,6 +133,7 @@ public class QuestionsListControllerTest {
     @Test
     public void onStop_listenersUnregistered() throws Exception {
         // Arrange
+        SUT.onStart();
         // Act
         SUT.onStop();
         // Assert
