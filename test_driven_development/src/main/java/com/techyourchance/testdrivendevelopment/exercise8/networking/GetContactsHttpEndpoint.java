@@ -10,7 +10,7 @@ public interface GetContactsHttpEndpoint {
     }
 
     interface Callback {
-        void onGetContactsSucceeded(List<ContactSchema> cartItems);
+        void onGetContactsSucceeded(List<ContactSchema> contactSchemas);
         void onGetContactsFailed(FailReason failReason);
     }
 
